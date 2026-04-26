@@ -63,7 +63,6 @@ else:
         if st.button('넘어가기'):
             if userdap == currentquiz['dap']:
                 st.session_state.score += 1
-                st.rerun()
             st.session_state.step += 1
             st.rerun()
    
