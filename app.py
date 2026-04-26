@@ -39,7 +39,7 @@ else:
     data = load()
     
     # 1. 먼저 step이 7인지를 체크해서 결과 화면을 보여줍니다.
-    if st.session_state.step >= 6:
+    if st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
