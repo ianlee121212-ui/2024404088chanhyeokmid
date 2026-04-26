@@ -40,6 +40,7 @@ else:
     if st.session_state.step < 7:
         currentquiz = data[st.session_state.step]   
         
+        st.subheader(f"문제 {st.session_state.step + 1}")
         st.write(f"질문: {currentquiz['question']}")
         userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
         
@@ -47,9 +48,10 @@ else:
             if userdap == currentquiz['dap']:
                 st.session_state.score += 1
             st.session_state.step += 1
-            st.info("버튼을 한 번 더 누르거나 화면을 클릭하면 다음으로 넘어갑니다.")
+            st.success("답안이 저장되었습니다. 화면을 아무 곳이나 클릭하거나 버튼을 다시 누르면 다음으로 넘어갑니다.")
             
-    if st.session_state.step >= 7:
+
+    elif st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
