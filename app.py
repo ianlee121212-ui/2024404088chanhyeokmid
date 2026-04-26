@@ -8,7 +8,6 @@ st.info('학번: 2024404088 / 이름: 이찬혁')
 
 @st.cache_data
 def load():
-    time.sleep(2) 
     try:
         with open('data.json', 'r', encoding='utf-8') as f:
             return json.load(f)
