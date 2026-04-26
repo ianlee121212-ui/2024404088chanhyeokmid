@@ -45,7 +45,7 @@ else:
         
         if session_state.core == 7:
                     if st.button("다시하기"):
-                        st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', caption='Streamlit 로고', width=300)
+                        st.image('test4.jpg', caption='Streamlit 로고', width=300)
 
             
         
