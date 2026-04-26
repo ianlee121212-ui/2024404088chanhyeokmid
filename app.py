@@ -8,10 +8,12 @@ st.info('학번: 2024404088 / 이름: 이찬혁')
 @st.cache_data
 def load():
     time.sleep(2) 
-    return [
-        {"question": "Streamlit은 파이썬 기반인가요?", "dap": "O"},
-        {"question": "st.write는 텍스트만 표시할 수 있나요?", "dap": "X"}
-    ]
+    try:
+        with open('data.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except:
+        return [{"question": "오류", "dap": "X"}]
+
 
 if 'login' not in st.session_state:
     st.session_state.login = False
