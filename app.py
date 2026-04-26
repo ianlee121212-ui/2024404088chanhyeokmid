@@ -35,9 +35,20 @@ if not st.session_state.login:
             st.session_state.login = True
         else:
             st.error('인증 실패')
-
 else:
     data = load()
+    if st.session_state.step < 7:
+        currentquiz = data[st.session_state.step]   
+        
+        st.write(f"질문: {currentquiz['question']}")
+        userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
+        
+        if st.button('넘어가기'):
+            if userdap == currentquiz['dap']:
+                st.session_state.score += 1
+            st.session_state.step += 1
+            st.info("버튼을 한 번 더 누르거나 화면을 클릭하면 다음으로 넘어갑니다.")
+            
     if st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
@@ -46,17 +57,4 @@ else:
         if st.button("다시 시작하기"):
             st.session_state.step = 0
             st.session_state.score = 0
-
-    elif st.session_state.step < 7:
-        currentquiz = data[st.session_state.step]   
-        st.write(f"질문: {currentquiz['question']}")
-        
-        userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
-        
-        if st.button('넘어가기'):
-            if userdap == currentquiz['dap']:
-                st.session_state.score += 1
-            st.session_state.step += 1
-
-            
 
