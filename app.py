@@ -40,7 +40,7 @@ if not st.session_state.login:
 else:
     data = load()
     
-    if st.session_state.step < len(data):
+    if st.session_state.step < 7:
         currentquiz = data[st.session_state.step]
         
         st.subheader(f'문제 진행 중...')
