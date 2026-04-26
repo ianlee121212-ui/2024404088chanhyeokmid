@@ -38,26 +38,25 @@ if not st.session_state.login:
 
 else:
     data = load()
-    
-    if st.session_state.step < 7:
+    if st.session_state.step >= 7:
+        st.header('끝')
+        final = st.session_state.score
+        st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
+        
+        if st.button("다시 시작하기"):
+            st.session_state.step = 0
+            st.session_state.score = 0
+
+    elif st.session_state.step < 7:
         currentquiz = data[st.session_state.step]   
         st.write(f"질문: {currentquiz['question']}")
-        userdap = st.radio('정답을 고르세요', ['O', 'X'])
+        
+        userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
         
         if st.button('넘어가기'):
             if userdap == currentquiz['dap']:
                 st.session_state.score += 1
             st.session_state.step += 1
-
-    if st.session_state.step >= 7:
-        st.header('끝')
-        final = st.session_state.score
-        st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
-        if st.button("다시 시작하기"):
-            st.session_state.step = 0
-            st.session_state.score = 0
-            
-
 
             
 
