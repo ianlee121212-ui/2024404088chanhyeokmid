@@ -45,7 +45,7 @@ else:
         
         if st.session_state.score == 7:
                     if st.button("우승"):
-                        st.image('test4.jpg', caption='Streamlit 로고', width=300)
+                        st.image('test4.jpg', caption='1945.8.15', width=300)
 
             
         
