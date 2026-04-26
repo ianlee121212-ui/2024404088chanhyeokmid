@@ -43,7 +43,7 @@ else:
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="완료")
         
-        if st.session_state.core == 7:
+        if st.session_state.score == 7:
                     if st.button("다시하기"):
                         st.image('test4.jpg', caption='Streamlit 로고', width=300)
 
