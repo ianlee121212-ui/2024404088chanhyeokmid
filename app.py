@@ -37,21 +37,9 @@ if not st.session_state.login:
             st.error('인증 실패')
 else:
     data = load()
-    if st.session_state.step < 7:
-        currentquiz = data[st.session_state.step]   
-        
-        st.subheader(f"문제 {st.session_state.step + 1}")
-        st.write(f"질문: {currentquiz['question']}")
-        userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
-        
-        if st.button('넘어가기'):
-            if userdap == currentquiz['dap']:
-                st.session_state.score += 1
-            st.session_state.step += 1
-            st.success("답안이 저장되었습니다. 화면을 아무 곳이나 클릭하거나 버튼을 다시 누르면 다음으로 넘어갑니다.")
-            
-
-    elif st.session_state.step >= 7:
+    
+    # 1. 먼저 step이 7인지를 체크해서 결과 화면을 보여줍니다.
+    if st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
@@ -59,4 +47,19 @@ else:
         if st.button("다시 시작하기"):
             st.session_state.step = 0
             st.session_state.score = 0
+            # (rerun이 없으므로 버튼 클릭 후 화면을 아무데나 한 번 더 눌러야 초기화됨)
 
+    # 2. step이 7 미만일 때만 데이터를 가져오고 퀴즈를 보여줍니다.
+    else:
+        # 이 코드가 if st.session_state.step < 7 안에 있어야 안전합니다.
+        currentquiz = data[st.session_state.step]   
+        
+        st.write(f"질문: {currentquiz['question']}")
+        userdap = st.radio('정답을 고르세요', ['O', 'X'], key=f"q{st.session_state.step}")
+        
+        if st.button('넘어가기'):
+            if userdap == currentquiz['dap']:
+                st.session_state.score += 1
+            st.session_state.step += 1
+            # 여기서 코드가 끝납니다. rerun이 없으므로 화면은 그대로지만 step은 이미 7입니다.
+            # 사용자가 한 번 더 클릭하면 맨 위의 'if st.session_state.step >= 7'이 실행됩니다.
