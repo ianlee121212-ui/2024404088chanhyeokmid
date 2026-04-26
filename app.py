@@ -49,7 +49,7 @@ else:
                 st.session_state.score += 1
             st.session_state.step += 1
 
-    else st.session_state.step >= 7:
+    if st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
