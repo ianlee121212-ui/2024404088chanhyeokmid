@@ -23,48 +23,40 @@ if 'score' not in st.session_state:
     st.session_state.score = 0
 
 if not st.session_state.login:
-    st.header('로그인 인증')
+    st.header('인증')
     col1, col2 = st.columns(2)
     with col1:
         user_id = st.text_input('아이디 (힌트: user)', value='user')
     with col2:
-        user_pw = st.text_input('비밀번호 (힌트: 1234)')
+        user_pw = st.text_input('비밀번호 (힌트: 1111 + 333)')
 
     if st.button('로그인 하기'):
-        if user_id == 'user' and user_pw == '1234':
+        if user_id == 'user' and user_pw == '1444':
             st.session_state.login = True
         else:
             st.error('인증 실패')
 
-# 3. 메인 퀴즈 화면
 else:
     data = load()
     
     if st.session_state.step < 7:
-        currentquiz = data[st.session_state.step]
-        
-        st.subheader(f'문제 진행 중...')
+        currentquiz = data[st.session_state.step]   
         st.write(f"질문: {currentquiz['question']}")
         userdap = st.radio('정답을 고르세요', ['O', 'X'])
         
-        if st.button('다음으로 넘어가기'):
+        if st.button('넘어가기'):
             if userdap == currentquiz['dap']:
                 st.session_state.score += 1
             st.session_state.step += 1
             
 
     else:
-        st.header('퀴즈가 모두 끝났습니다!')
+        st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
         
-        if st.button('처음부터 다시 풀기'):
+        if st.button('다시 풀기'):
             st.session_state.step = 0
             st.session_state.score = 0
             
 
-    st.sidebar.header('메뉴')
-    if st.sidebar.button('로그아웃'):
-        st.session_state.login = False
-        st.session_state.step = 0
-        st.session_state.score = 0
