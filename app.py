@@ -37,7 +37,7 @@ if not st.session_state.login:
             st.error('인증 실패')
 else:
     data = load()
-    if st.session_state.step >= 6:
+    if st.session_state.step >= 7:
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="테스트 완료")
