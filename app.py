@@ -2,8 +2,8 @@ import streamlit as st
 import time
 import json
 
-st.title('중간고사 대체 과제 / + 1 = 해방')
-st.title('숫자야구 + 마피아')
+st.title('**중간고사 대체 과제 / + 1 = 해방**')
+st.header('숫자야구 + 마피아')
 st.info('학번: 2024404088 / 이름: 이찬혁')
 
 @st.cache_data
