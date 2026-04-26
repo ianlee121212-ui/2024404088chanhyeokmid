@@ -33,6 +33,7 @@ if not st.session_state.login:
     if st.button('로그인'):
         if id == 'user' and pw == '1444':
             st.session_state.login = True
+            st.rerun()
         else:
             st.error('인증 실패')
 else:
