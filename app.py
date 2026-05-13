@@ -6,7 +6,6 @@ import logging
 st.title('**중간고사 대체 과제**')
 st.header('숫자야구 + 마피아 / + 15 = 해방')
 st.info('학번: 2024404088 / 이름: 이찬혁')
-print("시작")
 
 @st.cache_data
 def load():
