@@ -37,6 +37,7 @@ if not st.session_state.login:
             logging.info("!!! 로그인 성공 로그 !!!")
             st.rerun()
         else:
+            print(">>> 결과: 로그인 실패")
             st.error('인증 실패')
 else:
     data = load()
