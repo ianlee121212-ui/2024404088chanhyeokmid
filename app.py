@@ -5,6 +5,7 @@ import json
 st.title('**중간고사 대체 과제**')
 st.header('숫자야구 + 마피아 / + 15 = 해방')
 st.info('학번: 2024404088 / 이름: 이찬혁')
+print("시작")
 
 @st.cache_data
 def load():
@@ -33,23 +34,28 @@ if not st.session_state.login:
     if st.button('로그인'):
         if id == 'user' and pw == '1444':
             st.session_state.login = True
+            print("로그인 성공")
             st.rerun()
         else:
+             print("로그인 실패")
             st.error('인증 실패')
 else:
     data = load()
     if st.session_state.step >= 7:
+        print("문제 끝")
         st.header('끝')
         final = st.session_state.score
         st.metric(label="최종 점수", value=f"{final}점", delta="완료")
         
         if st.session_state.score == 7:
                     if st.button("우승"):
+                        print("우승")
                         st.image('test4.jpg', caption='1945.8.15', width=300)
 
             
         
         if st.button("다시하기"):
+            print("다시하기")
             st.session_state.step = 0
             st.session_state.score = 0
             st.rerun()
